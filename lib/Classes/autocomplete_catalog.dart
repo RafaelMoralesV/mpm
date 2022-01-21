@@ -15,6 +15,10 @@ class AutocompleteCatalog {
 }
 
 Future<List<String>> fetchAutocompleteList(String query) async {
+  if (query.isEmpty || query.length < 3) {
+    return Future.value([]);
+  }
+
   final uri =
       Uri.https('api.scryfall.com', '/cards/autocomplete', {'q': query});
 
