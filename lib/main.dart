@@ -1,32 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
-class Card {
-  final String name;
-
-  Card({
-    required this.name,
-  });
-
-  factory Card.fromJson(Map<String, dynamic> json) {
-    return Card(
-      name: json['name'],
-    );
-  }
-}
-
-Future<Card> fetchRandomCard() async {
-  final response =
-      await http.get(Uri.parse('https://api.scryfall.com/cards/random'));
-
-  if (response.statusCode == 200) {
-    return Card.fromJson(jsonDecode(response.body));
-  }
-
-  throw Exception('Request to Scryfall API has failed');
-}
+import 'Classes/mtg_card.dart';
+import 'utils/card_fetching.dart';
 
 void main() => runApp(const MyApp());
 
@@ -38,7 +12,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late Future<Card> futureCard;
+  late Future<MtgCard> futureCard;
 
   @override
   void initState() {
@@ -55,7 +29,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Fetch Data Example'),
         ),
         body: Center(
-          child: FutureBuilder<Card>(
+          child: FutureBuilder<MtgCard>(
               future: futureCard,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
