@@ -1,28 +1,53 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 class MtgCard {
+  final String id;
   final String name;
+  final String uri;
+  final int? edhrecRank;
+  final Map<String, String>? imageUris;
 
   MtgCard({
+    required this.id,
     required this.name,
+    required this.uri,
+    required this.edhrecRank,
+    required this.imageUris,
   });
 
-  factory MtgCard.fromJson(Map<String, dynamic> json) {
+  factory MtgCard.from(Map<String, dynamic> object) {
     return MtgCard(
-      name: json['name'],
-    );
+        id: object['id'],
+        name: object['name'],
+        uri: object['scryfall_uri'],
+        edhrecRank: object['edhrec_rank'],
+        imageUris: Map.from(object['image_uris']));
   }
 }
 
-Future<MtgCard> fetchRandomCard() async {
-  final response =
-      await http.get(Uri.parse('https://api.scryfall.com/cards/random'));
+const String API = 'https://api.scryfall.com';
 
-  if (response.statusCode == 200) {
-    return MtgCard.fromJson(jsonDecode(response.body));
+Future<MtgCard> fetchRandomCard() async {
+  var dio = Dio();
+
+  final Response response = await dio.get('$API/cards/random');
+
+  if (response.statusCode != 200) {
+    throw Exception(
+        'Request to Scryfall API has failed with Code: ${response.statusCode}');
   }
 
-  throw Exception('Request to Scryfall API has failed');
+  return MtgCard.from(response.data);
+}
+
+Future<MtgCard> fetchCardByName(String name) async {
+  final response =
+      await Dio().get('$API/cards/named', queryParameters: {'exact': name});
+
+  if (response.statusCode != 200) {
+    throw Exception(
+        'Request to Scryfall API has failed with Code: ${response.statusCode}');
+  }
+
+  return MtgCard.from(response.data);
 }

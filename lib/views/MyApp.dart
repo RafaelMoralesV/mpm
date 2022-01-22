@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mts/Classes/autocomplete_catalog.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:mts/Classes/mtg_card.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -31,8 +32,8 @@ class _MyAppState extends State<MyApp> {
           itemBuilder: (context, String cardName) {
             return ListTile(title: Text(cardName));
           },
-          onSuggestionSelected: (String suggestion) {
-            print(suggestion);
+          onSuggestionSelected: (String suggestion) async {
+            print((await fetchCardByName(suggestion)).imageUris?['normal']);
           },
         ),
       ),
