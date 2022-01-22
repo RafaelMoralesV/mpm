@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:mts/assets/constants.dart';
 
 class MtgCard {
   final String id;
@@ -25,12 +26,10 @@ class MtgCard {
   }
 }
 
-const String API = 'https://api.scryfall.com';
-
 Future<MtgCard> fetchRandomCard() async {
   var dio = Dio();
 
-  final Response response = await dio.get('$API/cards/random');
+  final Response response = await dio.get('$api/cards/random');
 
   if (response.statusCode != 200) {
     throw Exception(
@@ -42,7 +41,7 @@ Future<MtgCard> fetchRandomCard() async {
 
 Future<MtgCard> fetchCardByName(String name) async {
   final response =
-      await Dio().get('$API/cards/named', queryParameters: {'exact': name});
+      await Dio().get('$api/cards/named', queryParameters: {'exact': name});
 
   if (response.statusCode != 200) {
     throw Exception(

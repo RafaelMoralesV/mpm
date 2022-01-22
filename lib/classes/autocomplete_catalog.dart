@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:http/http.dart';
+import 'package:mts/assets/constants.dart';
 
 class AutocompleteCatalog {
   List<String>? cards;
@@ -15,15 +16,13 @@ class AutocompleteCatalog {
   }
 }
 
-const String API = 'https://api.scryfall.com';
-
 Future<List<String>> fetchAutocompleteList(String query) async {
   if (query.isEmpty || query.length < 3) {
     return Future.value([]);
   }
 
   final response =
-      await Dio().get('$API/cards/autocomplete', queryParameters: {'q': query});
+      await Dio().get('$api/cards/autocomplete', queryParameters: {'q': query});
 
   if (response.statusCode == 200) {
     // Data is List<Dynamic>. We convert it to List<String> this way.
