@@ -19,12 +19,9 @@ class Search extends StatelessWidget {
             border: OutlineInputBorder(),
           ),
         ),
-        suggestionsCallback: (pattern) {
-          return fetchAutocompleteList(pattern);
-        },
-        itemBuilder: (context, String cardName) {
-          return ListTile(title: Text(cardName));
-        },
+        suggestionsCallback: (pattern) => fetchAutocompleteList(pattern),
+        itemBuilder: (context, String cardName) =>
+            ListTile(title: Text(cardName)),
         onSuggestionSelected: (String suggestion) async {
           Navigator.push(
             context,
