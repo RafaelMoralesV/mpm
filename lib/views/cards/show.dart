@@ -81,6 +81,22 @@ class CardDetails extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () => launch(card.uri),
+          ),
+          InkWell(
+            child: const Text(
+              "Ver en CardKingdom",
+              style: TextStyle(fontSize: 20),
+            ),
+            onTap: () => launch(
+                "https://www.cardkingdom.com/catalog/search?filter[name]=${card.name}"),
+          ),
+          InkWell(
+            child: const Text(
+              "Ver en SCG",
+              style: TextStyle(fontSize: 20),
+            ),
+            onTap: () => launch(
+                "https://starcitygames.com/search/?card_name=${card.name}"),
           )
         ],
       ),
