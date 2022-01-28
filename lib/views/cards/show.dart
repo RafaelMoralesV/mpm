@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mts/classes/mtg_card.dart';
+import 'package:mts/components/basic_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ShowCard extends StatefulWidget {
@@ -75,28 +76,29 @@ class CardDetails extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          InkWell(
-            child: const Text(
-              "Ver en Scryfall",
-              style: TextStyle(fontSize: 20),
-            ),
-            onTap: () => launch(card.uri),
-          ),
-          InkWell(
-            child: const Text(
-              "Ver en CardKingdom",
-              style: TextStyle(fontSize: 20),
-            ),
-            onTap: () => launch(
-                "https://www.cardkingdom.com/catalog/search?filter[name]=${card.name}"),
-          ),
-          InkWell(
-            child: const Text(
-              "Ver en SCG",
-              style: TextStyle(fontSize: 20),
-            ),
-            onTap: () => launch(
-                "https://starcitygames.com/search/?card_name=${card.name}"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              BasicButton(
+                link: card.uri,
+                buttonText: 'SCG',
+                iconPath: 'assets/icons/Scryfall.png',
+                colors: const [Color(0xFF1D1C25), Color(0xFF431E3F)],
+              ),
+              BasicButton(
+                  link:
+                      "https://www.cardkingdom.com/catalog/search?filter[name]=${card.name}",
+                  buttonText: 'CK',
+                  iconPath: 'assets/icons/cardKingdom.png',
+                  colors: const [Color(0xFF091F47), Color(0xFF091F47)]),
+              BasicButton(
+                link:
+                    "https://starcitygames.com/search/?card_name=${card.name}",
+                buttonText: 'SCG',
+                iconPath: 'assets/icons/starcitygames.png',
+                colors: const [Color(0xFF052B48), Color(0xFF005586)],
+              ),
+            ],
           )
         ],
       ),

@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:http/http.dart';
 import 'package:mts/assets/constants.dart';
 
 class AutocompleteCatalog {
