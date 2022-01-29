@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mts/views/search.dart';
+import 'package:mts/views/testing.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,9 +14,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Fetch data Example',
-      home: Search(),
+      home: Testing(),
     );
   }
 }

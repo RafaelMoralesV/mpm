@@ -37,6 +37,7 @@ dependencies:
   flutter_typeahead: ^3.2.4
   dio: ^4.0.4
   url_launcher: ^6.0.18
+  flutter_secure_storage: ^5.0.2
 
 dev_dependencies:
   flutter_test:

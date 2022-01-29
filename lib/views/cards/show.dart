@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mts/classes/mtg_card.dart';
 import 'package:mts/components/basic_button.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ShowCard extends StatefulWidget {
   const ShowCard({Key? key, required this.cardName}) : super(key: key);
