@@ -18,8 +18,10 @@ Future<List<String>> fetchAutocompleteList(String query) async {
     return Future.value([]);
   }
 
-  final response =
-      await Dio().get('$api/cards/autocomplete', queryParameters: {'q': query});
+  final response = await Dio().get('$api/cards/autocomplete', queryParameters: {
+    'q': query,
+    'include_extras': true,
+  });
 
   if (response.statusCode == 200) {
     // Data is List<Dynamic>. We convert it to List<String> this way.

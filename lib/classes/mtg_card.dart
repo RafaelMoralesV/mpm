@@ -18,11 +18,14 @@ class MtgCard {
 
   factory MtgCard.from(Map<String, dynamic> object) {
     return MtgCard(
-        id: object['id'],
-        name: object['name'],
-        uri: object['scryfall_uri'],
-        edhrecRank: object['edhrec_rank'],
-        imageUris: Map.from(object['image_uris']));
+      id: object['id'],
+      name: object['name'],
+      uri: object['scryfall_uri'],
+      edhrecRank: object['edhrec_rank'],
+      imageUris: Map.from(
+        object['image_uris'] ?? object['card_faces'][0]['image_uris'],
+      ),
+    );
   }
 }
 
@@ -33,15 +36,17 @@ Future<MtgCard> fetchRandomCard() async {
 
   if (response.statusCode != 200) {
     throw Exception(
-        'Request to Scryfall API has failed with Code: ${response.statusCode}');
+      'Request to Scryfall API has failed with Code: ${response.statusCode}',
+    );
   }
 
   return MtgCard.from(response.data);
 }
 
 Future<MtgCard> fetchCardByName(String name) async {
-  final response =
-      await Dio().get('$api/cards/named', queryParameters: {'exact': name});
+  final response = await Dio().get('$api/cards/named', queryParameters: {
+    'exact': name,
+  });
 
   if (response.statusCode != 200) {
     throw Exception(
