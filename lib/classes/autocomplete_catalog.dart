@@ -25,7 +25,7 @@ Future<List<String>> fetchAutocompleteList(String query) async {
 
   if (response.statusCode == 200) {
     // Data is List<Dynamic>. We convert it to List<String> this way.
-    return List<String>.from(response.data['data']);
+    return List<String>.from(response.data['data'].take(5));
   }
 
   throw Exception('Request to Scryfall API has failed');
