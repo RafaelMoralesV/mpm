@@ -80,7 +80,7 @@ class CardDetails extends StatelessWidget {
             children: [
               BasicButton(
                 link: card.uri,
-                buttonText: 'SCG',
+                buttonText: 'SF',
                 iconPath: 'assets/icons/Scryfall.png',
                 colors: const [Color(0xFF1D1C25), Color(0xFF431E3F)],
               ),

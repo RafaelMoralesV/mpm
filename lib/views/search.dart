@@ -27,7 +27,7 @@ class SearchBar extends StatelessWidget {
     return TypeAheadField(
       textFieldConfiguration: TextFieldConfiguration(
         controller: _controller,
-        autofocus: true,
+        autofocus: false,
         decoration: InputDecoration(
           border: const UnderlineInputBorder(),
           suffixIcon: IconButton(

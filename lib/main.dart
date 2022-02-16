@@ -14,21 +14,28 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Fetch data Example', home: HomePage());
+    return const MaterialApp(
+        title: 'Fetch data Example', home: BottomNavigator());
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({
+class BottomNavigator extends StatefulWidget {
+  const BottomNavigator({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<BottomNavigator> createState() => _BottomNavigatorState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _BottomNavigatorState extends State<BottomNavigator> {
   int currentIndex = 0;
+  final screens = [
+    const Search(),
+    const Center(child: Text("Coleccion", style: TextStyle(fontSize: 60))),
+    const Center(child: Text("Amigos", style: TextStyle(fontSize: 60))),
+    const Center(child: Text("Perfil", style: TextStyle(fontSize: 60)))
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +43,18 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Fetch Data Example'),
       ),
-      body: const Search(),
+      body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
+        unselectedItemColor: Colors.white54,
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
         items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: "Buscar",
+            backgroundColor: Colors.red,
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.collections_bookmark),
             label: "Colección",
