@@ -55,3 +55,24 @@ Future<MtgCard> fetchCardByName(String name) async {
 
   return MtgCard.from(response.data);
 }
+
+Future<List<MtgCard>> queryCards(String name) async {
+  final response = await Dio().get('$api/cards/search', queryParameters: {
+    'q': name,
+    'include_extras': true,
+    'include_multilingual': true
+  });
+
+  if (response.statusCode != 200) {
+    throw Exception(
+        'Request to Scryfall API has failed with Code: ${response.statusCode}');
+  }
+
+  var aux = List<MtgCard>.empty(growable: true);
+
+  for (var element in response.data['data']) {
+    aux.add(MtgCard.from(element));
+  }
+
+  return aux;
+}
