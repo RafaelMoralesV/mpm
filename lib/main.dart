@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mts/views/search.dart';
-import 'package:mts/views/testing.dart';
+import 'package:mpmagic/views/search.dart';
 
 void main() => runApp(const MyApp());
 

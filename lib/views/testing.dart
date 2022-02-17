@@ -39,7 +39,7 @@ void getThere() async {
       value: "${res.data['token_type']} ${res.data['access_token']}",
     );
 
-    final Response res2 = await dio.get(
+    await dio.get(
       "http://10.0.2.2:3000/hello",
       options: Options(
         headers: {

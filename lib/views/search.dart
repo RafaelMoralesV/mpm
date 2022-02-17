@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:mts/classes/autocomplete_catalog.dart';
-import 'package:mts/views/cards/show.dart';
+import 'package:mpmagic/classes/autocomplete_catalog.dart';
+import 'package:mpmagic/views/cards/show.dart';
 
 class Search extends StatelessWidget {
   const Search({Key? key}) : super(key: key);

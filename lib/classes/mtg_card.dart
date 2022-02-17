@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:mts/assets/constants.dart';
+import 'package:mpmagic/assets/constants.dart';
 
 class MtgCard {
   final String id;
