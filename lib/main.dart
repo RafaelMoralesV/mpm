@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mpmagic/views/profile/show.dart';
 import 'package:mpmagic/views/search.dart';
 
 void main() => runApp(const MyApp());
@@ -33,7 +34,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
     const Search(),
     const Center(child: Text("Coleccion", style: TextStyle(fontSize: 60))),
     const Center(child: Text("Amigos", style: TextStyle(fontSize: 60))),
-    const Center(child: Text("Perfil", style: TextStyle(fontSize: 60)))
+    const Profile(),
   ];
 
   @override
