@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mpmagic/classes/mtg_card.dart';
+import 'package:mpmagic/views/cards/show.dart';
 
 class ListCards extends StatefulWidget {
   const ListCards({Key? key, required this.cardName}) : super(key: key);
@@ -31,6 +32,9 @@ class _ListCardsState extends State<ListCards> {
               return Text('${snapshot.error}');
             }
             if (snapshot.hasData) {
+              if (snapshot.data!.length == 1) {
+                return CardDetails(card: snapshot.data!.first);
+              }
               return CardList(cards: snapshot.data!);
             }
             return const CircularProgressIndicator();
@@ -48,14 +52,13 @@ class CardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-          itemCount: cards.length,
-          itemBuilder: (context, index) {
-            final card = cards[index];
+    return ListView.builder(
+      itemCount: cards.length,
+      itemBuilder: (context, index) {
+        final card = cards[index];
 
-            return CardListItem(card: card);
-          }),
+        return CardListItem(card: card);
+      },
     );
   }
 }
@@ -69,22 +72,37 @@ class CardListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          Image.network(
-            card.imageUris!['small'].toString(),
-            height: 200,
-          ),
-          Flexible(
-            child: Text(
-              card.name,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Scaffold(
+                appBar: AppBar(title: const Text('Show card!')),
+                body: CardDetails(
+                  card: card,
+                ),
               ),
             ),
-          ),
-        ],
+          );
+        },
+        child: Row(
+          children: [
+            Image.network(
+              card.imageUris!['small'].toString(),
+              height: 200,
+            ),
+            Flexible(
+              child: Text(
+                card.name,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
