@@ -1,16 +1,10 @@
-# mts
+# MPMagic
 
-A new Flutter project.
+Hola!
+Esta aplicación escrita en dart, flutter, fue creada con la idea de ayudarnos a organizar entre un grupo de amigos para poder intercambiar nuestras cartas entre nosotros mismos, volviendolo una especie de 'marketplace' para nuestro grupo local.
+Aún está en las fases más tempranas de desarrollo, así que cualquier aporte que se quiera realizar es más que bienvenido. Abre un Issue con tus ideas o problemas que hayas encontrado. Gracias!
 
-## Getting Started
+## Consideraciones
 
-This project is a starting point for a Flutter application.
+Para poder compilar este proyecto hacia un paquete instalable en tu dispositivo, necesitas necesariamente tener flutter instalado. Planeo publicar futuramente (Y ojalá pronto) un par de pre-releases con la aplicación compilada en un APK. No tengo planes ahora mismo para publicar una versión empaquetada para iOS, debido a que no poseo ningún método de probar mi aplicación en ese ambiente.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
